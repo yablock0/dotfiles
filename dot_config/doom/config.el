@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "yablock0"
-      user-mail-address "yablock0@yandex.ru")
+(setq user-full-name "Andrey Gagin"
+      user-mail-address "person.gagin@yandex.ru")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -32,7 +32,13 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-ayu-dark)
+(setq doom-theme 'flexoki-themes-dark)
+(add-hook 'doom-load-theme-hook
+  (defun my/flexoki-customizations ()
+    (when (eq doom-theme 'flexoki-themes-dark)
+      (custom-theme-set-faces 'flexoki-themes-dark
+        `(solaire-default-face ((t (:background "#1c1b1a"))))
+        `(hl-line ((t (:background "#1c1b1a"))))))))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -43,6 +49,16 @@
 (setq org-directory "~/org/")
 
 (setq scroll-margin 8)
+
+
+(register-input-method
+    "russian-computer" "Russian" 'quail-use-package
+    "RU" "Cyrillic JCUKEN computer layout"
+    "quail/cyrillic")
+
+(setq reverse-im-input-methods '("russian-computer"))
+(after! reverse-im
+  (reverse-im-mode t))
 
 ;;; END of config, DOOM info only
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
