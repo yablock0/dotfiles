@@ -11,7 +11,7 @@
 
 (package! flexoki-themes)
 (package! reverse-im)
-
+(package! compile-angel)
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 

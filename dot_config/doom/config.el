@@ -32,14 +32,11 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-lantern)
-;(setq doom-theme 'flexoki-themes-dark)
-(add-hook 'doom-load-theme-hook
-  (defun my/flexoki-customizations ()
-    (when (eq doom-theme 'flexoki-themes-dark)
-      (custom-theme-set-faces 'flexoki-themes-dark
-        `(solaire-default-face ((t (:background "#1c1b1a"))))
-        `(hl-line ((t (:background "#1c1b1a"))))))))
+;; (setq doom-theme 'doom-lantern)
+(setq doom-theme 'flexoki-themes-dark)
+(custom-theme-set-faces! 'flexoki-themes-dark
+  (`(solaire-default-face ((t (:background "#1c1b1a"))))
+   `(hl-line ((t (:background "#1c1b1a"))))))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -60,6 +57,7 @@
 (setq reverse-im-input-methods '("russian-computer"))
 (after! reverse-im
   (reverse-im-mode t))
+(setq compile-angel-verbose t)
 
 ;;; END of config, DOOM info only
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
