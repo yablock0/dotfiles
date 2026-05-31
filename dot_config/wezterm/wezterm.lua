@@ -31,7 +31,8 @@ config.colors = {
 	},
 }
 
-config.default_prog = { "pwsh.exe" }
+-- config.default_prog = { "pwsh.exe" }
+config.default_prog = { "bash" }
 
 config.front_end = "WebGpu"
 return config
