@@ -22,7 +22,7 @@
 ;; accept. For example:
 ;;
 (setq doom-font (font-spec :family "Lilex" :size 16 :weight 'medium)
-      doom-variable-pitch-font (font-spec :family "Calibri" :size 13))
+      doom-variable-pitch-font (font-spec :family "sans-serif" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -32,11 +32,11 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;; (setq doom-theme 'doom-lantern)
-(setq doom-theme 'flexoki-themes-dark)
+(setq doom-theme 'doom-lantern)
+;;(setq doom-theme 'flexoki-themes-dark)
 (custom-theme-set-faces! 'flexoki-themes-dark
-  (`(solaire-default-face ((t (:background "#1c1b1a"))))
-   `(hl-line ((t (:background "#1c1b1a"))))))
+  '(solaire-default-face :background "#1c1b1a")
+  '(hl-line :background "#1c1b1a"))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -48,14 +48,20 @@
 
 (setq scroll-margin 8)
 
-
+;; reverse-im setup
+;; I don't have "russian-computer" input method for some reason
 (register-input-method
     "russian-computer" "Russian" 'quail-use-package
     "RU" "Cyrillic JCUKEN computer layout"
     "quail/cyrillic")
 
-(setq reverse-im-input-methods '("russian-computer"))
-(after! reverse-im
+(setq
+  reverse-im-input-methods '("russian-computer")
+  reverse-im-char-fold t
+  reverse-im-read-char-advice-function #'reverse-im-read-char-include
+  reverse-im-cache-file (locate-user-emacs-file "reverse-im-cache.el"))
+
+(after! (char-fold)
   (reverse-im-mode t))
 (setq compile-angel-verbose t)
 
